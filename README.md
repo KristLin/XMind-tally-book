@@ -2,6 +2,13 @@
 
 本项目为[XMind 前端面试作业](https://github.com/xmindltd/hiring/blob/master/frontend-1/README.md)
 
+# 开发环境
+
+系统：MacOS
+Node: v12.16.1
+NPM: 6.13.4
+Vue: 4.4.6
+
 # 目录说明
 
 - `XMind-wireframe.pdf`：线框图
@@ -29,8 +36,6 @@
 
 可以将这些页面封装为组件（component），这样以后如需实现弹窗方法可直接调用。
 
-### VSCode 中 Eslint-Standard 和 Prettier 的冲突问题（函数名后加空格）
-
 # 开发日志
 
 ### 2020-06-29 夜里
@@ -41,4 +46,5 @@
 
 ### 2020-06-30
 
+- 修改线框图
 - 创建 vue 脚手架工程(es6-sass-eslint_standard)
