@@ -8,7 +8,7 @@
 - Vue.js
 - Vue-Router
 - Vuex
-- Bootstrap
+- Element
 
 # 开发思路
 - 设计线框图：主页，数据添加页，分类添加页，详细统计页
@@ -28,3 +28,6 @@
 - 建立github仓库
 - 编辑readme
 - 设计线框图
+
+### 2020-06-30
+- 创建vue脚手架工程
