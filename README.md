@@ -30,4 +30,4 @@
 - 设计线框图
 
 ### 2020-06-30
-- 创建vue脚手架工程(es6-sass-lint_standard)
+- 创建vue脚手架工程(es6-sass-eslint_standard)
