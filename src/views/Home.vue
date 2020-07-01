@@ -32,9 +32,7 @@
             :auto-upload="false"
             :show-file-list="false"
           >
-            <el-button id="hidden-upload-data-btn" class="hidden"
-              >导入账单
-            </el-button>
+            <el-button id="hidden-upload-data-btn" class="hidden"></el-button>
           </el-upload>
         </el-col>
         <el-col :xs="12" :sm="5" :md="5" :lg="5" :xl="5" class="md-10">
@@ -75,12 +73,15 @@
           </el-button>
         </el-col>
       </el-row>
+
+      <!-- 数据展示表格 -->
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import { parseCSV } from '../utils/csv'
 
 export default {
   name: 'Home',
@@ -89,14 +90,8 @@ export default {
       keyword: '',
       month: '',
       checkList: [],
-      dataTable: {
-        columns: '',
-        data: []
-      },
-      typeTable: {
-        columns: '',
-        data: []
-      }
+      dataTable: [],
+      typeTable: []
     }
   },
   components: {},
@@ -107,34 +102,18 @@ export default {
     handleUploadDataClick () {
       document.getElementById('hidden-upload-data-btn').click()
     },
-    // 处理csv文件数据
-    // 返回数据格式为二维数组（第一行为列名）：
-    // [
-    //    ['列名1', '列名2', '列名3', ...]
-    //    ['数据1', '数据2', '数据3', ...]
-    // ]
-    parseCSV (textContent) {
-      var arr = textContent.split('\n')
-      var itemList = []
-      for (let i = 0; i < arr.length; i++) {
-        itemList.push(arr[i].split(','))
-      }
-      return itemList
-    },
     // 处理上传账单数据
     uploadDataTable (file) {
       var _this = this
       // 将文件读取为如下文本格式：
       //    列名1,列名2,列名3
-      //    数据1,数据2,数据3
+      //    数据1-1,数据1-2,数据1-3
+      //    数据2-1,数据2-2,数据2-3
       var reader = new FileReader()
       reader.readAsText(file.raw)
       reader.onload = function () {
-        // 解析文本格式的CSV
-        var itemList = _this.parseCSV(this.result)
-        // 将列名和数据分开存储
-        _this.dataTable.columns = itemList[0]
-        _this.dataTable.data = itemList.slice(1)
+        // 解析文本格式的CSV:
+        _this.dataTable = parseCSV(this.result)
       }
     }
   }
@@ -147,27 +126,9 @@ export default {
   text-align: center;
   width: 600px;
 }
-.md-10 {
-  margin-bottom: 10px;
-}
-.block {
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-.h-40 {
-  height: 40px;
-}
-.pt-10 {
-  padding-top: 10px;
-}
 @media screen and (max-width: 768px) {
   .container {
     width: 80%;
   }
-}
-.hidden {
-  display: none;
 }
 </style>
