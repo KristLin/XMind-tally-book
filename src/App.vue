@@ -21,8 +21,11 @@ export default {
   margin-top: 60px;
 }
 /* 一些常用类 */
-.pt-10 {
-  padding-top: 10px;
+.mt-10 {
+  margin-top: 10px;
+}
+.mr-10 {
+  margin-right: 10px;
 }
 .md-10 {
   margin-bottom: 10px;
@@ -33,5 +36,11 @@ export default {
 }
 .h-40 {
   height: 40px;
+}
+.m-0 {
+  margin: 0;
+}
+.p-0 {
+  padding: 0;
 }
 </style>

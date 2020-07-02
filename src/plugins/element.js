@@ -13,7 +13,9 @@ import {
   DropdownItem,
   Checkbox,
   CheckboxGroup,
-  Upload
+  Upload,
+  Tag,
+  Message
 } from 'element-ui'
 
 Vue.use(Button)
@@ -30,3 +32,8 @@ Vue.use(DropdownItem)
 Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
 Vue.use(Upload)
+Vue.use(Tag)
+
+Vue.component(Message)
+
+Vue.prototype.$message = Message
