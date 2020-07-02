@@ -126,6 +126,7 @@ import {
   getMonths,
   changeTypeDisplay,
   changeCatDisplay,
+  filterByMonth,
   getCatDict,
   calSummary
 } from '@/utils/home'
@@ -164,6 +165,9 @@ export default {
       }
       if (this.displayOp.cat) {
         result = changeCatDisplay(result, this.catDict)
+      }
+      if (this.chosenMonth) {
+        result = filterByMonth(result, this.chosenMonth)
       }
       return result
     },

@@ -64,6 +64,17 @@ export function changeCatDisplay (dataTable, catDict) {
   }
   return dataTable
 }
+
+//
+export function filterByMonth (dataTable, chosenMonth) {
+  var result = dataTable.filter(item => {
+    if (item.time.startsWith(chosenMonth)) {
+      return item
+    }
+  })
+  return result
+}
+
 // 计算总支出和总收入
 export function calSummary (dataTable, chosenMonth) {
   var summary = {
@@ -71,15 +82,9 @@ export function calSummary (dataTable, chosenMonth) {
     income: 0.0
   }
   if (dataTable.length > 0) {
-    var usedTable = []
+    var usedTable = dataTable
     if (chosenMonth) {
-      usedTable = dataTable.filter(item => {
-        if (!item.time.startsWith(chosenMonth)) {
-          return item
-        }
-      })
-    } else {
-      usedTable = dataTable
+      usedTable = filterByMonth(dataTable, chosenMonth)
     }
     for (let i = 0; i < usedTable.length; i++) {
       if (usedTable[i].type === 0) {
