@@ -4,12 +4,12 @@
 //  { 列名1: 数据2-1, 列名2: 数据2-2, ... },
 //  ...
 // ]
-export function parseCSV (textContent) {
-  var arr = textContent.split('\n')
-  var columns = arr[0].split(',')
+export function parseCSV (textCSV) {
+  var arr = textCSV.split('\n')
+  var columns = arr[0].trim().split(',')
   var itemList = []
   for (let i = 1; i < arr.length; i++) {
-    var itemAttrList = arr[i].split(',')
+    var itemAttrList = arr[i].trim().split(',')
     var item = {}
     // 将各行数据组装为Object
     for (let j = 0; j < columns.length; j++) {

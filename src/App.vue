@@ -34,7 +34,4 @@ export default {
 .h-40 {
   height: 40px;
 }
-.hidden {
-  display: none;
-}
 </style>

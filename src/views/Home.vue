@@ -46,13 +46,17 @@
         <el-col :xs="12" :sm="9" :md="9" :lg="9" :xl="9" class="md-10">
           <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link block h-40 pt-10">
-              {{ month ? '已选月份： ' + month : '请选择月份' }}
+              {{ chosenMonth ? '已选月份： ' + chosenMonth : '请选择月份' }}
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="2">2</el-dropdown-item>
-              <el-dropdown-item command="3">3</el-dropdown-item>
-              <el-dropdown-item command="4">4</el-dropdown-item>
+              <el-dropdown-item
+                v-for="(month, index) in months"
+                :key="index"
+                :command="month"
+              >
+                {{ month }}
+              </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </el-col>
@@ -75,23 +79,44 @@
       </el-row>
 
       <!-- 数据展示表格 -->
+      <el-table
+        :data="dataTable"
+        border
+        style="width: 100%"
+        height="400"
+        stripe
+      >
+        <el-table-column
+          prop="time"
+          label="账单时间"
+          width="200"
+        ></el-table-column>
+        <el-table-column prop="type" label="账单类型"></el-table-column>
+        <el-table-column prop="category" label="账单分类"></el-table-column>
+        <el-table-column prop="amount" label="账单金额"></el-table-column>
+      </el-table>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import { parseCSV } from '../utils/csv'
+import { parseDataCSV, getMonths } from '@/utils/home'
 
 export default {
   name: 'Home',
   data () {
     return {
       keyword: '',
-      month: '',
+      chosenMonth: '',
       checkList: [],
       dataTable: [],
       typeTable: []
+    }
+  },
+  computed: {
+    months () {
+      return getMonths(this.dataTable)
     }
   },
   components: {},
@@ -113,7 +138,7 @@ export default {
       reader.readAsText(file.raw)
       reader.onload = function () {
         // 解析文本格式的CSV:
-        _this.dataTable = parseCSV(this.result)
+        _this.dataTable = parseDataCSV(this.result)
       }
     }
   }
@@ -130,5 +155,8 @@ export default {
   .container {
     width: 80%;
   }
+}
+.hidden {
+  display: none;
 }
 </style>
