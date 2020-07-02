@@ -122,7 +122,7 @@ export default {
   components: {},
   methods: {
     handleCommand (command) {
-      this.month = command
+      this.months = command
     },
     handleUploadDataClick () {
       document.getElementById('hidden-upload-data-btn').click()
