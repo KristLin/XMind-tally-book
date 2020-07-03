@@ -34,25 +34,11 @@
       <!-- 第二行输入 -->
       <el-row :gutter="20">
         <el-col :xs="12" :sm="9" :md="9" :lg="9" :xl="9" class="md-10">
-          <el-dropdown @command="handleCommand" class="block">
-            <el-button
-              :disabled="dataTable.length === 0"
-              type="primary"
-              class="block"
-            >
-              {{ chosenMonth ? '已选月份： ' + chosenMonth : '请选择月份' }}
-              <i class="el-icon-arrow-down el-icon--right"></i>
-            </el-button>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item
-                v-for="(month, index) in months"
-                :key="index"
-                :command="month"
-              >
-                {{ month }}
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+          <DropdownBtn
+            :itemList="months"
+            :btnName="'月份'"
+            @clickCommand="handleCommand"
+          />
         </el-col>
         <el-col :xs="12" :sm="5" :md="5" :lg="5" :xl="5" class="h-40 md-10">
           <el-checkbox
@@ -83,40 +69,11 @@
       </el-row>
 
       <!-- 数据展示表格 -->
-      <el-table
-        :data="disDataTable"
-        border
-        style="width: 100%"
-        height="400"
-        class="mt-10 md-10"
-        stripe
-      >
-        <el-table-column
-          prop="time"
-          label="账单时间"
-          width="200"
-          sortable
-        ></el-table-column>
-        <el-table-column
-          prop="type"
-          label="账单类型"
-          sortable
-        ></el-table-column>
-        <el-table-column
-          prop="category"
-          label="账单分类"
-          sortable
-        ></el-table-column>
-        <el-table-column
-          prop="amount"
-          label="账单金额"
-          sortable
-        ></el-table-column>
-      </el-table>
+      <DataTable :dataTable="disDataTable" />
 
       <!-- 总支出总收入统计 -->
       <div style="float: right">
-        <el-tag type="warning" class="mr-10"
+        <el-tag type="danger" class="mr-10"
           >总支出：{{ summary.expense }}</el-tag
         >
         <el-tag type="success">总收入：{{ summary.income }}</el-tag>
@@ -127,7 +84,10 @@
 
 <script>
 // @ is an alias to /src
-import UploadBtn from '../components/UploadBtn.vue'
+import UploadBtn from '@/components/UploadBtn.vue'
+import DropdownBtn from '@/components/DropdownBtn.vue'
+import DataTable from '@/components/DataTable.vue'
+
 import {
   parseDataCSV,
   parseCatCSV,
@@ -155,12 +115,9 @@ export default {
       // 账单数据
       dataTable: [],
       // 账单分类数据
-      catTable: [],
+      catTable: {},
       // 账单类型字典
-      typeDict: {
-        0: '支出',
-        1: '收入'
-      }
+      typeDict: { 0: '支出', 1: '收入' }
     }
   },
   computed: {
@@ -193,16 +150,18 @@ export default {
     }
   },
   components: {
-    UploadBtn
+    UploadBtn,
+    DropdownBtn,
+    DataTable
   },
   methods: {
     // 选择月份
     handleCommand (command) {
-      this.chosenMonth = command
+      this.chosenMonth = command.name
     },
     handleDataCSV (itemList) {
-      console.log('reset data CSV')
       this.dataTable = parseDataCSV(itemList)
+      this.$store.commit('setDataTable', this.dataTable)
       this.$message({
         message: '成功导入账单数据',
         type: 'success',
@@ -211,6 +170,7 @@ export default {
     },
     handleCatCSV (itemList) {
       this.catTable = parseCatCSV(itemList)
+      this.$store.commit('setCatTable', this.catTable)
       this.$message({
         message: '成功导入分类数据',
         type: 'success',
@@ -220,6 +180,11 @@ export default {
     handleAddData () {
       this.$router.push('addData')
     }
+  },
+  // 渲染前，从state获取数据
+  beforeMount () {
+    this.dataTable = this.$store.state.dataTable
+    this.catTable = this.$store.state.catTable
   }
 }
 </script>
@@ -229,7 +194,7 @@ export default {
   margin: 50px auto;
   text-align: center;
   width: 600px;
-  min-width: 400px;
+  min-width: 300px;
 }
 @media screen and (max-width: 768px) {
   .container {

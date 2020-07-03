@@ -26,15 +26,21 @@ export function parseCatCSV (itemList) {
 }
 
 // 提取月份数据
+// 由于自定义组件UploadBtn需要应对更复杂内容的展示，所以返回对象的数组
+// 其中对象必须有个属性name用来存放需要展示的内容，这里month对象存的即月份
 export function getMonths (dataTable) {
   var monthList = []
-  for (var i = 0; i < dataTable.length; i++) {
+  for (let i = 0; i < dataTable.length; i++) {
     var month = dataTable[i].time.slice(0, 7)
     if (!monthList.includes(month)) {
       monthList.push(month)
     }
   }
-  return monthList
+  var monthObjList = []
+  for (let i = 0; i < monthList.length; i++) {
+    monthObjList.push({ name: monthList[i] })
+  }
+  return monthObjList
 }
 
 // 获取账单分类字典
