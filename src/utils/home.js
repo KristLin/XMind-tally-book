@@ -65,7 +65,7 @@ export function changeCatDisplay (dataTable, catDict) {
   return dataTable
 }
 
-//
+// 根据所选月份过滤数据集
 export function filterByMonth (dataTable, chosenMonth) {
   var result = dataTable.filter(item => {
     if (item.time.startsWith(chosenMonth)) {
