@@ -30,6 +30,9 @@ export default {
 .md-10 {
   margin-bottom: 10px;
 }
+.ml-10 {
+  margin-left: 10px;
+}
 .block {
   display: block;
   width: 100%;

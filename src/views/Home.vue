@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <div class="container">
+      <!-- 第一行输入 -->
       <el-row :gutter="20">
         <el-col :xs="12" :sm="9" :md="9" :lg="9" :xl="9" class="md-10">
           <el-input
@@ -30,6 +31,7 @@
         </el-col>
       </el-row>
 
+      <!-- 第二行输入 -->
       <el-row :gutter="20">
         <el-col :xs="12" :sm="9" :md="9" :lg="9" :xl="9" class="md-10">
           <el-dropdown @command="handleCommand" class="block">
@@ -65,7 +67,11 @@
           ></el-checkbox>
         </el-col>
         <el-col :xs="12" :sm="5" :md="5" :lg="5" :xl="5" class="md-10">
-          <el-button size="medium" type="primary" class="block h-40"
+          <el-button
+            size="medium"
+            type="primary"
+            class="block h-40"
+            @click="handleAddData"
             >添加数据
           </el-button>
         </el-col>
@@ -89,12 +95,12 @@
           prop="time"
           label="账单时间"
           width="200"
-          sortable=""
+          sortable
         ></el-table-column>
         <el-table-column
           prop="type"
           label="账单类型"
-          sortable=""
+          sortable
         ></el-table-column>
         <el-table-column
           prop="category"
@@ -104,9 +110,11 @@
         <el-table-column
           prop="amount"
           label="账单金额"
-          sortable=""
+          sortable
         ></el-table-column>
       </el-table>
+
+      <!-- 总支出总收入统计 -->
       <div style="float: right">
         <el-tag type="warning" class="mr-10"
           >总支出：{{ summary.expense }}</el-tag
@@ -208,6 +216,9 @@ export default {
         type: 'success',
         duration: 1500
       })
+    },
+    handleAddData () {
+      this.$router.push('addData')
     }
   }
 }
@@ -223,8 +234,6 @@ export default {
 @media screen and (max-width: 768px) {
   .container {
     font-size: 3px;
-  }
-  .container {
     width: 80%;
   }
 }

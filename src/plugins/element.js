@@ -15,7 +15,8 @@ import {
   CheckboxGroup,
   Upload,
   Tag,
-  Message
+  Message,
+  Card
 } from 'element-ui'
 
 Vue.use(Button)
@@ -33,6 +34,7 @@ Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
 Vue.use(Upload)
 Vue.use(Tag)
+Vue.use(Card)
 
 Vue.component(Message)
 
