@@ -1,40 +1,47 @@
 <template>
   <div class="add-data">
     <el-card class="container">
-      <h3 style="text-align: center">添加数据</h3>
       <el-form :model="inputData">
         <el-form-item>
-          <el-row>
-            <el-col :span="8">
+          <el-row :gutter="20">
+            <el-col :span="12">
               <DropdownBtn
                 :itemList="catTable"
                 :btnName="'分类'"
                 @clickCommand="handleCommand"
               />
             </el-col>
-            <el-col :span="2">
-              <p></p>
-            </el-col>
-            <el-col :span="14"><el-button>添加分类</el-button></el-col>
+            <el-col :span="12"><el-button>添加分类</el-button></el-col>
           </el-row>
         </el-form-item>
 
         <el-form-item>
-          <el-tag :type="tagType">类型：{{ chosenCat.typeName }}</el-tag>
+          <el-tag :type="tagType" style="width:100px; font-size:14px"
+            >类型：{{ chosenCat.typeName }}</el-tag
+          >
         </el-form-item>
 
         <el-form-item>
-          <el-input
-            v-model="inputData.amount"
-            placeholder="请输入金额"
-            style="width: 50%"
-          ></el-input>
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-input
+                v-model="inputData.amount"
+                placeholder="请输入金额"
+              ></el-input>
+            </el-col>
+          </el-row>
         </el-form-item>
       </el-form>
-      <el-button type="primary" @click="handleBackHome">返回主页</el-button>
-      <el-button type="primary" class="btn-right" @click="handleAddData"
-        >添加数据</el-button
-      >
+
+      <div class="btn-group">
+        <el-button
+          type="primary"
+          @click="handleBackHome"
+          style="margin-right:50px"
+          >返回主页</el-button
+        >
+        <el-button type="primary" @click="handleAddData">添加数据</el-button>
+      </div>
     </el-card>
   </div>
 </template>
@@ -123,15 +130,15 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin: 100px auto;
-  padding: 5px 20px 30px 20px;
+  margin: 0 auto;
+  padding: 30px 20px 30px 20px;
   text-align: left;
   width: 600px;
   min-width: 300px;
 }
-.btn-left {
-  margin-left: 25%;
-  margin-right: 8%;
+.btn-group {
+  margin-top: 60px;
+  text-align: center;
 }
 @media screen and (max-width: 768px) {
   .container {
