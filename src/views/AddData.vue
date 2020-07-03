@@ -72,13 +72,11 @@ export default {
   },
   computed: {
     tagType () {
-      var chosenCatType = this.chosenCat.type
-      if (chosenCatType === 0) {
+      if (this.chosenCat.type === 0) {
         return 'danger'
-      } else if (chosenCatType === 1) {
+      } else if (this.chosenCat.type === 1) {
         return 'success'
       }
-      // if chosenCatType is undefine, return 'info'
       return 'info'
     }
   },
