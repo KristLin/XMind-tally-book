@@ -39,7 +39,7 @@
   - 主页
     - 账单数据导入 (<font color=#99b898>已完成</font>)
     - 账单数据导出 (<font color=#e84a5f>尚未完成</font>)
-    - 账单分类数据导入 ((<font color=#99b898>已完成</font>))
+    - 账单分类数据导入 (<font color=#99b898>已完成</font>)
     - 账单数据展示（<font color=#99b898>已完成</font>）
     - 账单分类名称切换显示 (<font color=#99b898>已完成</font>)
     - 账单类型名称切换显示 (<font color=#99b898>已完成</font>)
