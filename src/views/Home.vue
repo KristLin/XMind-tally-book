@@ -105,6 +105,7 @@ import {
   changeTypeDisplay,
   changeCatDisplay,
   filterByMonth,
+  filterByKeyword,
   getCatDict,
   calSummary
 } from '@/utils/home'
@@ -125,9 +126,7 @@ export default {
       // 账单数据
       dataTable: [],
       // 账单分类数据
-      catTable: {},
-      // 账单类型字典
-      typeDict: {}
+      catTable: {}
     }
   },
   computed: {
@@ -143,6 +142,9 @@ export default {
       }
       if (this.chosenMonth) {
         result = filterByMonth(result, this.chosenMonth)
+      }
+      if (this.keyword) {
+        result = filterByKeyword(result, this.keyword)
       }
       return result
     },
@@ -197,7 +199,6 @@ export default {
     this.dataTable = this.$store.state.dataTable
     this.catTable = this.$store.state.catTable
     this.chosenMonth = this.$store.state.chosenMonth
-    console.log(this.chosenMonth)
   }
 }
 </script>

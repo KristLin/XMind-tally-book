@@ -85,6 +85,19 @@ export function filterByMonth (dataTable, chosenMonth) {
   return result
 }
 
+// 根据关键字过滤数据集
+export function filterByKeyword (dataTable, keyword) {
+  var result = dataTable
+  if (keyword) {
+    result = dataTable.filter(item => {
+      if (item.time.includes(keyword) || item.type.toString().includes(keyword) || item.category.includes(keyword)) {
+        return item
+      }
+    })
+  }
+  return result
+}
+
 // 计算总支出和总收入
 export function calSummary (dataTable, chosenMonth) {
   var summary = {
