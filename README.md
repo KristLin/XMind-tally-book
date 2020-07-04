@@ -44,13 +44,14 @@
     - 账单分类名称切换显示 (:white_check_mark:)
     - 账单类型名称切换显示 (:white_check_mark:)
     - 选择月份按钮 (:white_check_mark:)
-    - 数据关键字过滤 (:x:)
+    - 数据关键字过滤 (:white_check_mark:)
     - 跳转添加数据页面 (:white_check_mark:)
     - 跳转详细统计页面 (:white_check_mark:)
   - 数据添加页
     - 选择分类按钮 (:white_check_mark:)
     - 跳转添加分类页面 (:white_check_mark:)
     - 所选分类的类型展示 (:white_check_mark:)
+    - 时间输入 (:white_check_mark:)
     - 金额输入 (:white_check_mark:)
     - 跳转主页 (:white_check_mark:)
     - 添加数据 (:white_check_mark:)
@@ -128,6 +129,8 @@
 - 引入 echart 并完成数据统计页面的开发
 - 将多页面需要引用的数据存入 Vuex，简化代码
 - 为页面组件添加样式，区分功能并美化界面
+- 在数据添加页面加入时间输入
+- 实现主页关键字过滤功能
 
 # 项目展望
 
