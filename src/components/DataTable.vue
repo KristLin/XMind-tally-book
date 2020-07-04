@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-table
+      id="id"
       :data="dataTable"
       border
       style="width: 100%"
@@ -33,7 +34,8 @@
 export default {
   name: 'DataTable',
   props: {
-    dataTable: Array
+    dataTable: Array,
+    id: String
   }
 }
 </script>

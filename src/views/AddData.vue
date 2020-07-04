@@ -33,6 +33,7 @@
                 type="datetime"
                 value-format="timestamp"
                 placeholder="选择日期时间"
+                :picker-options="pickerOptions"
               >
               </el-date-picker>
             </el-col>
@@ -87,7 +88,15 @@ export default {
         type: undefined,
         typeName: '---'
       },
-      catTable: []
+      // 账单分类数据
+      catTable: [],
+      // el-date-picker的选项, 只能选过去的时间
+      pickerOptions: {
+        disabledDate (time) {
+          // 若结尾加上 - 8.64e7 则不可选中今天
+          return time.getTime() > Date.now()
+        }
+      }
     }
   },
   computed: {
@@ -121,22 +130,37 @@ export default {
           break
         }
       }
+      // 无空缺输入
       if (flag) {
-        // 转换时间格式
-        this.inputData.time = moment(this.inputData.time).format()
-        // 将数据添加到数据集中
-        this.$store.commit('addData', this.inputData)
-        this.$message({
-          message: '成功添加账单数据',
-          type: 'success',
-          duration: 1500
-        })
-        this.inputData = {}
-        this.$router.push('/')
+        // 若金额不是数值，提示错误
+        if (isNaN(this.inputData.amount)) {
+          this.$message({
+            message: '金额必须为数值',
+            type: 'warning',
+            duration: 1500
+          })
+        } else {
+          // 转换时间格式
+          this.inputData.time = moment(this.inputData.time).format()
+          // 将金额转换成精确到小数点2位
+          this.inputData.amount = parseFloat(this.inputData.amount).toFixed(2)
+          // 添加数据到数据集中
+          this.$store.commit('addData', this.inputData)
+          this.$message({
+            message: '成功添加账单数据',
+            type: 'success',
+            duration: 1500
+          })
+          this.inputData = {}
+          this.$router.push('/')
+        }
       }
     },
+    // 处理选择分类
     handleCommand (command) {
       this.chosenCat = command
+      // 为分类添加类型属性：收入 或 支出
+      // 方便数据的展示
       this.chosenCat.typeName = this.$store.state.typeDict[command.type]
       this.inputData.category = command.id
       this.inputData.type = command.type

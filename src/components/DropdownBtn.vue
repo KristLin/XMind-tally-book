@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-dropdown @command="handleCommand" class="block">
+    <el-dropdown trigger="click" @command="handleCommand" class="block">
       <el-button :disabled="itemList.length === 0" type="primary" class="block">
         {{
           chosenItemName

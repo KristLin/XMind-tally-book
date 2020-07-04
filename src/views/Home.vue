@@ -25,8 +25,15 @@
           />
         </el-col>
         <el-col :xs="12" :sm="5" :md="5" :lg="5" :xl="5" class="md-10">
-          <el-button size="medium" type="primary" class="block h-40"
-            >导出账单
+          <el-button
+            size="medium"
+            type="danger"
+            plain
+            class="block h-40"
+            :disabled="dataTable.length ? false : true"
+            @click="handleExport"
+          >
+            导出账单
           </el-button>
         </el-col>
       </el-row>
@@ -70,9 +77,7 @@
             class="block h-40"
             plain
             @click="handleClickChart"
-            :disabled="
-              dataTable.length > 0 && catTable.length > 0 ? false : true
-            "
+            :disabled="dataTable.length && catTable.length ? false : true"
           >
             详细统计
           </el-button>
@@ -80,7 +85,7 @@
       </el-row>
 
       <!-- 数据展示表格 -->
-      <DataTable :dataTable="disDataTable" />
+      <DataTable ref="elDataTable" :dataTable="disDataTable" />
 
       <!-- 总支出总收入统计 -->
       <div style="float: right">
@@ -98,6 +103,8 @@
 import UploadBtn from '@/components/UploadBtn.vue'
 import DropdownBtn from '@/components/DropdownBtn.vue'
 import DataTable from '@/components/DataTable.vue'
+import exportFromJSON from 'export-from-json'
+import moment from 'moment'
 
 import {
   parseDataCSV,
@@ -130,6 +137,11 @@ export default {
       catTable: []
     }
   },
+  components: {
+    UploadBtn,
+    DropdownBtn,
+    DataTable
+  },
   computed: {
     // 用于展示的数据集
     disDataTable () {
@@ -158,17 +170,13 @@ export default {
       return calSummary(this.dataTable, this.chosenMonth)
     }
   },
-  components: {
-    UploadBtn,
-    DropdownBtn,
-    DataTable
-  },
   methods: {
-    // 选择月份
+    // 处理选择月份
     handleCommand (command) {
       this.chosenMonth = command.name
       this.$store.commit('setChosenMonth', command.name)
     },
+    // 处理上传的账单数据
     handleDataCSV (itemList) {
       this.dataTable = parseDataCSV(itemList)
       this.$store.commit('setDataTable', this.dataTable)
@@ -178,6 +186,7 @@ export default {
         duration: 1500
       })
     },
+    // 处理上传的分类数据
     handleCatCSV (itemList) {
       this.catTable = parseCatCSV(itemList)
       this.$store.commit('setCatTable', this.catTable)
@@ -188,11 +197,24 @@ export default {
         duration: 1500
       })
     },
+    // 跳转到添加数据页面
     handleAddData () {
       this.$router.push('addData')
     },
+    // 跳转到详细统计页面
     handleClickChart () {
       this.$router.push('showChart')
+    },
+    // 导出数据
+    handleExport () {
+      const data = this.dataTable
+      // 将时间转化为unix毫秒格式
+      for (var idx in data) {
+        data[idx].time = moment(data[idx].time).format('x')
+      }
+      const fileName = 'export-data'
+      const exportType = 'csv'
+      exportFromJSON({ data, fileName, exportType })
     }
   },
   // 渲染前，从state获取数据
