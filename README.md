@@ -34,39 +34,39 @@
 
 # 开发进度
 
-- 线框图：主页，数据添加页，分类添加页，详细统计页 (<font color=#99b898>已完成</font>)
+- 线框图：主页，数据添加页，分类添加页，详细统计页 (:white_check_mark:)
 - 功能实现
   - 主页
-    - 账单数据导入 (<font color=#99b898>已完成</font>)
-    - 账单数据导出 (<font color=#e84a5f>尚未完成</font>)
-    - 账单分类数据导入 (<font color=#99b898>已完成</font>)
-    - 账单数据展示（<font color=#99b898>已完成</font>）
-    - 账单分类名称切换显示 (<font color=#99b898>已完成</font>)
-    - 账单类型名称切换显示 (<font color=#99b898>已完成</font>)
-    - 选择月份按钮 (<font color=#99b898>已完成</font>)
-    - 数据关键字过滤 (<font color=#e84a5f>尚未完成</font>)
-    - 跳转添加数据页面 (<font color=#99b898>已完成</font>)
-    - 跳转详细统计页面 (<font color=#99b898>已完成</font>)
+    - 账单数据导入 (:white_check_mark:)
+    - 账单数据导出 (:x:)
+    - 账单分类数据导入 (:white_check_mark:)
+    - 账单数据展示（:white_check_mark:）
+    - 账单分类名称切换显示 (:white_check_mark:)
+    - 账单类型名称切换显示 (:white_check_mark:)
+    - 选择月份按钮 (:white_check_mark:)
+    - 数据关键字过滤 (:x:)
+    - 跳转添加数据页面 (:white_check_mark:)
+    - 跳转详细统计页面 (:white_check_mark:)
   - 数据添加页
-    - 选择分类按钮 (<font color=#99b898>已完成</font>)
-    - 跳转添加分类页面 (<font color=#99b898>已完成</font>)
-    - 所选分类的类型展示 (<font color=#99b898>已完成</font>)
-    - 金额输入 (<font color=#99b898>已完成</font>)
-    - 跳转主页 (<font color=#99b898>已完成</font>)
-    - 添加数据 (<font color=#99b898>已完成</font>)
+    - 选择分类按钮 (:white_check_mark:)
+    - 跳转添加分类页面 (:white_check_mark:)
+    - 所选分类的类型展示 (:white_check_mark:)
+    - 金额输入 (:white_check_mark:)
+    - 跳转主页 (:white_check_mark:)
+    - 添加数据 (:white_check_mark:)
   - 分类添加页
-    - ID 输入 (<font color=#99b898>已完成</font>)
-    - 名称输入 (<font color=#99b898>已完成</font>)
-    - 类型选择 (<font color=#99b898>已完成</font>)
-    - 跳转数据添加页面 (<font color=#99b898>已完成</font>)
-    - 添加分类 (<font color=#99b898>已完成</font>)
-  - 详细统计页（已完成）
-    - 显示月份标题 (<font color=#99b898>已完成</font>)
-    - 显示切换按钮组 (<font color=#99b898>已完成</font>)
-    - 显示扇形统计图 (<font color=#99b898>已完成</font>)
-    - 跳转主页 (<font color=#99b898>已完成</font>)
-    - 图像居中按钮 (<font color=#99b898>已完成</font>)
-- 部署到云上 (<font color=#e84a5f>尚未完成</font>)
+    - ID 输入 (:white_check_mark:)
+    - 名称输入 (:white_check_mark:)
+    - 类型选择 (:white_check_mark:)
+    - 跳转数据添加页面 (:white_check_mark:)
+    - 添加分类 (:white_check_mark:)
+  - 详细统计页
+    - 显示月份标题 (:white_check_mark:)
+    - 显示切换按钮组 (:white_check_mark:)
+    - 显示扇形统计图 (:white_check_mark:)
+    - 跳转主页 (:white_check_mark:)
+    - 图像居中按钮 (:white_check_mark:)
+- 部署到云上 (:x:)
 
 # 遇到的问题
 
@@ -121,7 +121,7 @@
 - 完善数据添加页面的开发
 - 实现 Vuex 存储数据和添加数据
 
-### 2020-07-03
+### 2020-07-04
 
 - 更正线框图中的错字
 - 引入 echart 并完成数据统计页面的开发
