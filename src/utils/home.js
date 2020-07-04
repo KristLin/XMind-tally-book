@@ -8,7 +8,8 @@ export function parseDataCSV (itemList) {
     // 转为整型
     csv[i].type = parseInt(csv[i].type)
     // 转为浮点型并保留两位小数
-    csv[i].amount = parseFloat(csv[i].amount).toFixed(2)
+    // 为何取绝对值： 由于数据已经有了 支出 和 收入 的分类，数值不应该有负数(应该是示例数据有误)
+    csv[i].amount = parseFloat(Math.abs(csv[i].amount)).toFixed(2)
     // 将时间由毫秒数转化为Date 的 ISO8601 格式
     csv[i].time = moment(parseInt(csv[i].time)).format()
   }
@@ -43,7 +44,7 @@ export function getMonths (dataTable) {
   return monthObjList
 }
 
-// 获取账单分类字典
+// 从账单分类数据集提取出来的分类字典
 export function getCatDict (catTable) {
   var catDict = {}
   for (let i = 0; i < catTable.length; i++) {
@@ -73,11 +74,14 @@ export function changeCatDisplay (dataTable, catDict) {
 
 // 根据所选月份过滤数据集
 export function filterByMonth (dataTable, chosenMonth) {
-  var result = dataTable.filter(item => {
-    if (item.time.startsWith(chosenMonth)) {
-      return item
-    }
-  })
+  var result = dataTable
+  if (chosenMonth) {
+    result = dataTable.filter(item => {
+      if (item.time.startsWith(chosenMonth)) {
+        return item
+      }
+    })
+  }
   return result
 }
 

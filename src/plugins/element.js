@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import {
   Button,
+  ButtonGroup,
   Input,
   Form,
   FormItem,
@@ -20,6 +21,7 @@ import {
 } from 'element-ui'
 
 Vue.use(Button)
+Vue.use(ButtonGroup)
 Vue.use(Input)
 Vue.use(Form)
 Vue.use(FormItem)

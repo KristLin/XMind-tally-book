@@ -11,23 +11,24 @@
                 @clickCommand="handleCommand"
               />
             </el-col>
-            <el-col :span="12"><el-button>添加分类</el-button></el-col>
+            <el-col :span="12">
+              <el-button @click="handleAddCat">添加分类</el-button>
+            </el-col>
           </el-row>
         </el-form-item>
 
         <el-form-item>
-          <el-tag :type="tagType" style="width:100px; font-size:14px"
-            >类型：{{ chosenCat.typeName }}</el-tag
-          >
+          <el-tag :type="tagType" style="width:100px; font-size:14px">
+            类型：{{ chosenCat.typeName }}
+          </el-tag>
         </el-form-item>
 
         <el-form-item>
           <el-row :gutter="20">
             <el-col :span="12">
-              <el-input
-                v-model="inputData.amount"
-                placeholder="请输入金额"
-              ></el-input>
+              <el-input v-model="inputData.amount" placeholder="请输入金额">
+                <template slot="append">元</template>
+              </el-input>
             </el-col>
           </el-row>
         </el-form-item>
@@ -38,9 +39,10 @@
           type="primary"
           @click="handleBackHome"
           style="margin-right:50px"
-          >返回主页</el-button
         >
-        <el-button type="primary" @click="handleAddData">添加数据</el-button>
+          返回主页
+        </el-button>
+        <el-button type="success" @click="handleAddData">添加数据</el-button>
       </div>
     </el-card>
   </div>
@@ -52,6 +54,9 @@ import moment from 'moment'
 
 export default {
   name: 'AddData',
+  components: {
+    DropdownBtn
+  },
   data () {
     return {
       inputData: {
@@ -66,8 +71,7 @@ export default {
         type: undefined,
         typeName: '---'
       },
-      catTable: [],
-      typeDict: { 0: '支出', 1: '收入' }
+      catTable: []
     }
   },
   computed: {
@@ -80,12 +84,12 @@ export default {
       return 'info'
     }
   },
-  components: {
-    DropdownBtn
-  },
   methods: {
     handleBackHome () {
       this.$router.push('/')
+    },
+    handleAddCat () {
+      this.$router.push('addCat')
     },
     handleAddData () {
       // 为数据补上时间和类型
@@ -93,7 +97,6 @@ export default {
       // 判断是否输入了所有项目
       for (var attr in this.inputData) {
         if (this.inputData[attr] === undefined) {
-          console.log(attr)
           this.$message({
             message: '数据输入不完整，请检查',
             type: 'warning',
@@ -115,7 +118,7 @@ export default {
     },
     handleCommand (command) {
       this.chosenCat = command
-      this.chosenCat.typeName = this.typeDict[command.type]
+      this.chosenCat.typeName = this.$store.state.typeDict[command.type]
       this.inputData.category = command.id
       this.inputData.type = command.type
     }
@@ -129,7 +132,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   margin: 0 auto;
-  padding: 30px 20px 30px 20px;
+  padding: 30px 20px;
   text-align: left;
   width: 600px;
   min-width: 300px;

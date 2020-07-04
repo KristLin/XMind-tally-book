@@ -8,7 +8,8 @@ export default new Vuex.Store({
     dataTable: [],
     catTable: [],
     typeDict: { 0: '支出', 1: '收入' },
-    catDict: {}
+    catDict: {},
+    chosenMonth: ''
   },
   mutations: {
     setDataTable (state, dataTable) {
@@ -20,8 +21,15 @@ export default new Vuex.Store({
     setCatDict (state, catDict) {
       state.catDict = catDict
     },
+    setChosenMonth (state, chosenMonth) {
+      state.chosenMonth = chosenMonth
+    },
     addData (state, newData) {
       state.dataTable.push(newData)
+    },
+    addCat (state, newCat) {
+      state.catTable.push(newCat)
+      state.catDict[newCat.id] = newCat.name
     }
   },
   actions: {

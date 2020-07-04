@@ -27,11 +27,12 @@ export default {
   name: 'DropdownBtn',
   props: {
     itemList: Array,
-    btnName: String
+    btnName: String,
+    defaultCommand: String
   },
   data () {
     return {
-      chosenItemName: ''
+      chosenItemName: this.defaultCommand
     }
   },
   methods: {

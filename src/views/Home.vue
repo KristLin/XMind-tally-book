@@ -37,6 +37,7 @@
           <DropdownBtn
             :itemList="months"
             :btnName="'月份'"
+            :defaultCommand="chosenMonth"
             @clickCommand="handleCommand"
           />
         </el-col>
@@ -55,15 +56,24 @@
         <el-col :xs="12" :sm="5" :md="5" :lg="5" :xl="5" class="md-10">
           <el-button
             size="medium"
-            type="primary"
+            type="success"
             class="block h-40"
             @click="handleAddData"
             >添加数据
           </el-button>
         </el-col>
         <el-col :xs="12" :sm="5" :md="5" :lg="5" :xl="5" class="md-10">
-          <el-button size="medium" type="primary" class="block h-40"
-            >详细统计
+          <el-button
+            size="medium"
+            type="warning"
+            class="block h-40"
+            plain
+            @click="handleClickChart"
+            :disabled="
+              dataTable.length > 0 && catTable.length > 0 ? false : true
+            "
+          >
+            详细统计
           </el-button>
         </el-col>
       </el-row>
@@ -117,7 +127,7 @@ export default {
       // 账单分类数据
       catTable: {},
       // 账单类型字典
-      typeDict: { 0: '支出', 1: '收入' }
+      typeDict: {}
     }
   },
   computed: {
@@ -126,10 +136,10 @@ export default {
       // 这里需要用深拷贝，否则会改变原数据
       var result = JSON.parse(JSON.stringify(this.dataTable))
       if (this.displayOp.type) {
-        result = changeTypeDisplay(result, this.typeDict)
+        result = changeTypeDisplay(result, this.$store.state.typeDict)
       }
       if (this.displayOp.cat) {
-        result = changeCatDisplay(result, this.catDict)
+        result = changeCatDisplay(result, this.$store.state.catDict)
       }
       if (this.chosenMonth) {
         result = filterByMonth(result, this.chosenMonth)
@@ -139,10 +149,6 @@ export default {
     // 从账单数据中提取出来的去重月份
     months () {
       return getMonths(this.dataTable)
-    },
-    // 从账单分类数据集提取出来的分类字典
-    catDict () {
-      return getCatDict(this.catTable)
     },
     // 统计总开支与总收入
     summary () {
@@ -158,6 +164,7 @@ export default {
     // 选择月份
     handleCommand (command) {
       this.chosenMonth = command.name
+      this.$store.commit('setChosenMonth', command.name)
     },
     handleDataCSV (itemList) {
       this.dataTable = parseDataCSV(itemList)
@@ -171,6 +178,7 @@ export default {
     handleCatCSV (itemList) {
       this.catTable = parseCatCSV(itemList)
       this.$store.commit('setCatTable', this.catTable)
+      this.$store.commit('setCatDict', getCatDict(this.catTable))
       this.$message({
         message: '成功导入分类数据',
         type: 'success',
@@ -179,12 +187,17 @@ export default {
     },
     handleAddData () {
       this.$router.push('addData')
+    },
+    handleClickChart () {
+      this.$router.push('showChart')
     }
   },
   // 渲染前，从state获取数据
   beforeMount () {
     this.dataTable = this.$store.state.dataTable
     this.catTable = this.$store.state.catTable
+    this.chosenMonth = this.$store.state.chosenMonth
+    console.log(this.chosenMonth)
   }
 }
 </script>
