@@ -46,6 +46,7 @@
             :btnName="'月份'"
             :defaultCommand="chosenMonth"
             @clickCommand="handleCommand"
+            resetBtn="全部月份"
           />
         </el-col>
         <el-col :xs="12" :sm="5" :md="5" :lg="5" :xl="5" class="h-40 md-10">

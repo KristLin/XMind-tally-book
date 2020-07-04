@@ -10,6 +10,9 @@
         <i class="el-icon-arrow-down el-icon--right"></i>
       </el-button>
       <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item v-if="resetBtn" :command="''">
+          {{ resetBtn }}
+        </el-dropdown-item>
         <el-dropdown-item
           v-for="(item, index) in itemList"
           :key="index"
@@ -28,7 +31,8 @@ export default {
   props: {
     itemList: Array,
     btnName: String,
-    defaultCommand: String
+    defaultCommand: String,
+    resetBtn: String
   },
   data () {
     return {
