@@ -51,6 +51,7 @@
             v-model="displayOp.cat"
             label="分类名称"
             class="block"
+            :disabled="catTable.length ? false : true"
           ></el-checkbox>
         </el-col>
         <el-col :xs="12" :sm="5" :md="5" :lg="5" :xl="5" class="md-10">
@@ -126,7 +127,7 @@ export default {
       // 账单数据
       dataTable: [],
       // 账单分类数据
-      catTable: {}
+      catTable: []
     }
   },
   computed: {

@@ -70,26 +70,29 @@ export default {
     },
     handleAddCat () {
       // 判断是否输入了所有项目
+      var flag = true
       for (var attr in this.inputCat) {
         if (this.inputCat[attr] === undefined) {
+          flag = false
           this.$message({
             message: '数据输入不完整，请检查',
             type: 'warning',
             duration: 1500
           })
-          return 0
+          break
         }
       }
-
-      // 将数据添加到数据集中
-      this.$store.commit('addCat', this.inputCat)
-      this.$message({
-        message: '成功添加账单分类',
-        type: 'success',
-        duration: 1500
-      })
-      this.inputCat = {}
-      this.$router.push('/')
+      if (flag) {
+        // 将数据添加到数据集中
+        this.$store.commit('addCat', this.inputCat)
+        this.$message({
+          message: '成功添加账单分类',
+          type: 'success',
+          duration: 1500
+        })
+        this.inputCat = {}
+        this.$router.push('/')
+      }
     }
   }
 }
