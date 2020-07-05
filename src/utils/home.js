@@ -8,7 +8,7 @@ export function parseBillCSV (itemList) {
     // 转为整型
     csv[i].type = parseInt(csv[i].type)
     // 转为浮点型并保留两位小数
-    // 为何取绝对值： 由于数据已经有了 支出 和 收入 的分类，数值不应该有负数(应该是示例数据有误)
+    // 为何取绝对值： 由于账单数据已经有了 支出 和 收入 的分类，数值不应该有负数(应该是示例数据有误)
     csv[i].amount = parseFloat(Math.abs(csv[i].amount)).toFixed(2)
     // 将时间由毫秒数转化为Date 的 ISO8601 格式
     csv[i].time = moment(parseInt(csv[i].time)).format()
@@ -72,7 +72,7 @@ export function changeCatDisplay (billTable, catDict) {
   return billTable
 }
 
-// 根据所选月份过滤数据集
+// 根据所选月份过滤账单
 export function filterByMonth (billTable, chosenMonth) {
   var result = billTable
   if (chosenMonth) {
@@ -85,7 +85,7 @@ export function filterByMonth (billTable, chosenMonth) {
   return result
 }
 
-// 根据关键字过滤数据集
+// 根据关键字过滤账单
 export function filterByKeyword (billTable, keyword) {
   var result = billTable
   if (keyword) {

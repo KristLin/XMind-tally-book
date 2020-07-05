@@ -144,7 +144,7 @@ export default {
     BillTable
   },
   computed: {
-    // 用于展示的数据集
+    // 用于展示的账单
     disBillTable () {
       // 这里需要用深拷贝，否则会改变原数据
       var result = JSON.parse(JSON.stringify(this.billTable))

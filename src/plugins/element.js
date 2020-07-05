@@ -18,7 +18,10 @@ import {
   Tag,
   Message,
   Card,
-  DatePicker
+  DatePicker,
+  Menu,
+  Submenu,
+  MenuItem
 } from 'element-ui'
 
 Vue.use(Button)
@@ -39,6 +42,9 @@ Vue.use(Upload)
 Vue.use(Tag)
 Vue.use(Card)
 Vue.use(DatePicker)
+Vue.use(Menu)
+Vue.use(Submenu)
+Vue.use(MenuItem)
 
 Vue.component(Message)
 

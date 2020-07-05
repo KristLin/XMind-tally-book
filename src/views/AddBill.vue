@@ -123,7 +123,7 @@ export default {
         if (this.inputBill[attr] === undefined) {
           flag = false
           this.$message({
-            message: '数据输入不完整，请检查',
+            message: '账单数据输入不完整，请检查',
             type: 'warning',
             duration: 1500
           })
@@ -144,7 +144,7 @@ export default {
           this.inputBill.time = moment(this.inputBill.time).format()
           // 将金额转换成精确到小数点2位
           this.inputBill.amount = parseFloat(this.inputBill.amount).toFixed(2)
-          // 添加数据到数据集中
+          // 添加账单数据到数据集中
           this.$store.commit('addBill', this.inputBill)
           this.$message({
             message: '成功添加账单数据',
