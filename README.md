@@ -31,7 +31,7 @@
 
 ### 云端运行
 
-- 敬请期待
+- 浏览器输入`https://tally-book.herokuapp.com`
 
 # 开发进度
 
