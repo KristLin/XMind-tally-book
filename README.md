@@ -33,7 +33,7 @@
 
 ### 云端运行
 
-- 浏览器输入`https://tally-book.herokuapp.com`
+- 浏览器输入`https://tally-book.herokuapp.com` (可能需要 VPN)
 
 ### 说明
 
@@ -43,11 +43,11 @@
 
 ### 主页面
 
-![image](http://github.com/KristLin/screenshots/screenshot-home.jpg)
+![image](http://github.com/KristLin/screenshots/screenshot-home.png)
 
 ### 详细统计页
 
-![image](http://github.com/KristLin/screenshots/screenshot-chart.jpg)
+![image](http://github.com/KristLin/screenshots/screenshot-chart.png)
 
 # 开发进度
 
