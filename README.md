@@ -34,39 +34,39 @@
 
 # 开发进度
 
-- 线框图：主页，数据添加页，分类添加页，详细统计页 (:white_check_mark:)
+- [x] 线框图：主页，数据添加页，分类添加页，详细统计页
 - 功能实现
   - 主页
-    - [x] 账单数据导入 (:white_check_mark:)
-    - [-] 账单数据导出 (:white_check_mark:)
-    - [] 账单分类数据导入 (:white_check_mark:)
-    - [c] 账单数据展示（:white_check_mark:）
-    - [o] 账单分类名称切换显示 (:white_check_mark:)
-    - 账单类型名称切换显示 (:white_check_mark:)
-    - 选择月份按钮 (:white_check_mark:)
-    - 数据关键字过滤 (:white_check_mark:)
-    - 跳转添加数据页面 (:white_check_mark:)
-    - 跳转详细统计页面 (:white_check_mark:)
+    - [x] 账单数据导入
+    - [x] 账单数据导出
+    - [x] 账单分类数据导入
+    - [x] 账单数据展示（:white_check_mark:）
+    - [x] 账单分类名称切换显示
+    - [x] 账单类型名称切换显示
+    - [x] 选择月份按钮
+    - [x] 数据关键字过滤
+    - [x] 跳转添加数据页面
+    - [x] 跳转详细统计页面
   - 数据添加页
-    - 选择分类按钮 (:white_check_mark:)
-    - 跳转添加分类页面 (:white_check_mark:)
-    - 所选分类的类型展示 (:white_check_mark:)
-    - 时间输入 (:white_check_mark:)
-    - 金额输入 (:white_check_mark:)
-    - 跳转主页 (:white_check_mark:)
-    - 添加数据 (:white_check_mark:)
+    - [x] 选择分类按钮
+    - [x] 跳转添加分类页面
+    - [x] 所选分类的类型展示
+    - [x] 时间输入
+    - [x] 金额输入
+    - [x] 跳转主页
+    - [x] 添加数据
   - 分类添加页
-    - ID 输入 (:white_check_mark:)
-    - 名称输入 (:white_check_mark:)
-    - 类型选择 (:white_check_mark:)
-    - 跳转数据添加页面 (:white_check_mark:)
-    - 添加分类 (:white_check_mark:)
+    - [x] ID 输入
+    - [x] 名称输入
+    - [x] 类型选择
+    - [x] 跳转数据添加页面
+    - [x] 添加分类
   - 详细统计页
-    - 显示月份标题 (:white_check_mark:)
-    - 显示切换按钮组 (:white_check_mark:)
-    - 显示扇形统计图 (:white_check_mark:)
-    - 跳转主页 (:white_check_mark:)
-- 部署到云上 (:x:)
+    - [x] 显示月份标题
+    - [x] 显示切换按钮组
+    - [x] 显示扇形统计图
+    - [x] 跳转主页
+- [ ] 部署到云上
 
 # 遇到的问题
 
