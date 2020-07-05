@@ -37,8 +37,8 @@
 - 线框图：主页，数据添加页，分类添加页，详细统计页 (:white_check_mark:)
 - 功能实现
   - 主页
-    - 账单数据导入 (:white_check_mark:)
-    - 账单数据导出 (:x:)
+    - [x] 账单数据导入 (:white_check_mark:)
+    - 账单数据导出 (:white_check_mark:)
     - 账单分类数据导入 (:white_check_mark:)
     - 账单数据展示（:white_check_mark:）
     - 账单分类名称切换显示 (:white_check_mark:)
