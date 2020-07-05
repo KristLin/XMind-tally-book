@@ -1,5 +1,5 @@
-const express = require('express')
-const serveStatic = require('serve-static')
+import express from 'express'
+import serveStatic from 'serve-static'
 
 const app = express()
 const port = process.env.PORT || 5000
