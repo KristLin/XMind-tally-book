@@ -36,7 +36,7 @@
 
 ### 说明
 
-- 导入数据格式请参考 XMind 面试作业链接
+- 导入数据格式请参考[XMind 前端面试作业](https://github.com/xmindltd/hiring/blob/master/frontend-1/README.md)
 
 # 开发进度
 
