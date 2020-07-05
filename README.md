@@ -13,6 +13,7 @@
 
 - `XMind-wireframe.pdf`: 线框图
 - `data`: 测试用的数据
+- `dist`: 发布内容及配置, 用于部署在 Heroku
 
 # 技术栈选择
 
@@ -32,6 +33,10 @@
 ### 云端运行
 
 - 浏览器输入`https://tally-book.herokuapp.com`
+
+### 说明
+
+- 导入数据格式请参考 XMind 面试作业链接
 
 # 开发进度
 
