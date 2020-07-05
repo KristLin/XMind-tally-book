@@ -1,6 +1,6 @@
 # 项目说明
 
-本项目为[XMind 前端面试作业](https://github.com/xmindltd/hiring/blob/master/frontend-1/README.md)
+本项目为[XMind 前端面试作业](https://github.com/xmindltd/hiring/blob/master/frontend-1)
 
 # 开发环境
 
@@ -38,7 +38,7 @@
 
 ### 说明
 
-- 导入数据格式请参考[XMind 前端面试作业](https://github.com/xmindltd/hiring/blob/master/frontend-1/README.md)
+- 导入数据格式请参考[XMind 前端面试作业](https://github.com/xmindltd/hiring/blob/master/frontend-1)
 
 # 部分项目页面展示
 
