@@ -1,5 +1,5 @@
 <template>
-  <div class="add-data">
+  <div class="add-bill">
     <el-card class="container">
       <el-form>
         <el-form-item>
@@ -29,7 +29,7 @@
           <el-row :gutter="20">
             <el-col :span="12">
               <el-date-picker
-                v-model="inputData.time"
+                v-model="inputBill.time"
                 type="datetime"
                 value-format="timestamp"
                 placeholder="选择日期时间"
@@ -43,7 +43,7 @@
         <el-form-item>
           <el-row :gutter="20">
             <el-col :span="12">
-              <el-input v-model="inputData.amount" placeholder="请输入金额">
+              <el-input v-model="inputBill.amount" placeholder="请输入金额">
                 <template slot="append">元</template>
               </el-input>
             </el-col>
@@ -59,7 +59,7 @@
         >
           返回主页
         </el-button>
-        <el-button type="success" @click="handleAddData">添加数据</el-button>
+        <el-button type="success" @click="handleAddBill">添加数据</el-button>
       </div>
     </el-card>
   </div>
@@ -70,13 +70,13 @@ import DropdownBtn from '@/components/DropdownBtn.vue'
 import moment from 'moment'
 
 export default {
-  name: 'AddData',
+  name: 'AddBill',
   components: {
     DropdownBtn
   },
   data () {
     return {
-      inputData: {
+      inputBill: {
         time: undefined,
         category: undefined,
         type: undefined,
@@ -116,11 +116,11 @@ export default {
     handleAddCat () {
       this.$router.push('addCat')
     },
-    handleAddData () {
+    handleAddBill () {
       // 判断是否输入了所有项目
       var flag = true
-      for (var attr in this.inputData) {
-        if (this.inputData[attr] === undefined) {
+      for (var attr in this.inputBill) {
+        if (this.inputBill[attr] === undefined) {
           flag = false
           this.$message({
             message: '数据输入不完整，请检查',
@@ -133,7 +133,7 @@ export default {
       // 无空缺输入
       if (flag) {
         // 若金额不是数值，提示错误
-        if (isNaN(this.inputData.amount)) {
+        if (isNaN(this.inputBill.amount)) {
           this.$message({
             message: '金额必须为数值',
             type: 'warning',
@@ -141,17 +141,17 @@ export default {
           })
         } else {
           // 转换时间格式
-          this.inputData.time = moment(this.inputData.time).format()
+          this.inputBill.time = moment(this.inputBill.time).format()
           // 将金额转换成精确到小数点2位
-          this.inputData.amount = parseFloat(this.inputData.amount).toFixed(2)
+          this.inputBill.amount = parseFloat(this.inputBill.amount).toFixed(2)
           // 添加数据到数据集中
-          this.$store.commit('addData', this.inputData)
+          this.$store.commit('addBill', this.inputBill)
           this.$message({
             message: '成功添加账单数据',
             type: 'success',
             duration: 1500
           })
-          this.inputData = {}
+          this.inputBill = {}
           this.$router.push('/')
         }
       }
@@ -162,8 +162,8 @@ export default {
       // 为分类添加类型属性：收入 或 支出
       // 方便数据的展示
       this.chosenCat.typeName = this.$store.state.typeDict[command.type]
-      this.inputData.category = command.id
-      this.inputData.type = command.type
+      this.inputBill.category = command.id
+      this.inputBill.type = command.type
     }
   },
   beforeMount () {

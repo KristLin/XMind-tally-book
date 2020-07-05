@@ -23,7 +23,7 @@
       <div class="btn-group">
         <el-button
           type="primary"
-          @click="handleBackAddData"
+          @click="handleBackAddBill"
           style="margin-right:50px"
         >
           返回添加数据
@@ -62,8 +62,8 @@ export default {
     }
   },
   methods: {
-    handleBackAddData () {
-      this.$router.push('addData')
+    handleBackAddBill () {
+      this.$router.push('addBill')
     },
     handleCommand (command) {
       this.inputCat.type = command.value

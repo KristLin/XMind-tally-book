@@ -2,7 +2,7 @@
   <div>
     <el-table
       id="id"
-      :data="dataTable"
+      :data="billTable"
       border
       style="width: 100%"
       height="400"
@@ -32,9 +32,9 @@
 
 <script>
 export default {
-  name: 'DataTable',
+  name: 'BillTable',
   props: {
-    dataTable: Array,
+    billTable: Array,
     id: String
   }
 }

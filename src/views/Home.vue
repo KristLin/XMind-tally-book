@@ -20,8 +20,8 @@
         <el-col :xs="12" :sm="5" :md="5" :lg="5" :xl="5" class="md-10">
           <UploadBtn
             btnName="导入账单"
-            btnId="data-btn"
-            @readed="handleDataCSV"
+            btnId="bill-btn"
+            @readed="handleBillCSV"
           />
         </el-col>
         <el-col :xs="12" :sm="5" :md="5" :lg="5" :xl="5" class="md-10">
@@ -30,7 +30,7 @@
             type="danger"
             plain
             class="block h-40"
-            :disabled="dataTable.length ? false : true"
+            :disabled="billTable.length ? false : true"
             @click="handleExport"
           >
             导出账单
@@ -67,7 +67,7 @@
             size="medium"
             type="success"
             class="block h-40"
-            @click="handleAddData"
+            @click="handleAddBill"
             >添加数据
           </el-button>
         </el-col>
@@ -78,7 +78,7 @@
             class="block h-40"
             plain
             @click="handleClickChart"
-            :disabled="dataTable.length && catTable.length ? false : true"
+            :disabled="billTable.length && catTable.length ? false : true"
           >
             详细统计
           </el-button>
@@ -86,7 +86,7 @@
       </el-row>
 
       <!-- 数据展示表格 -->
-      <DataTable ref="elDataTable" :dataTable="disDataTable" />
+      <BillTable ref="elBillTable" :billTable="disBillTable" />
 
       <!-- 总支出总收入统计 -->
       <div style="float: right">
@@ -103,12 +103,12 @@
 // @ is an alias to /src
 import UploadBtn from '@/components/UploadBtn.vue'
 import DropdownBtn from '@/components/DropdownBtn.vue'
-import DataTable from '@/components/DataTable.vue'
+import BillTable from '@/components/BillTable.vue'
 import exportFromJSON from 'export-from-json'
 import moment from 'moment'
 
 import {
-  parseDataCSV,
+  parseBillCSV,
   parseCatCSV,
   getMonths,
   changeTypeDisplay,
@@ -133,7 +133,7 @@ export default {
         cat: false
       },
       // 账单数据
-      dataTable: [],
+      billTable: [],
       // 账单分类数据
       catTable: []
     }
@@ -141,13 +141,13 @@ export default {
   components: {
     UploadBtn,
     DropdownBtn,
-    DataTable
+    BillTable
   },
   computed: {
     // 用于展示的数据集
-    disDataTable () {
+    disBillTable () {
       // 这里需要用深拷贝，否则会改变原数据
-      var result = JSON.parse(JSON.stringify(this.dataTable))
+      var result = JSON.parse(JSON.stringify(this.billTable))
       if (this.displayOp.type) {
         result = changeTypeDisplay(result, this.$store.state.typeDict)
       }
@@ -164,11 +164,11 @@ export default {
     },
     // 从账单数据中提取出来的去重月份
     months () {
-      return getMonths(this.dataTable)
+      return getMonths(this.billTable)
     },
     // 统计总开支与总收入
     summary () {
-      return calSummary(this.dataTable, this.chosenMonth)
+      return calSummary(this.billTable, this.chosenMonth)
     }
   },
   methods: {
@@ -178,9 +178,9 @@ export default {
       this.$store.commit('setChosenMonth', command.name)
     },
     // 处理上传的账单数据
-    handleDataCSV (itemList) {
-      this.dataTable = parseDataCSV(itemList)
-      this.$store.commit('setDataTable', this.dataTable)
+    handleBillCSV (itemList) {
+      this.billTable = parseBillCSV(itemList)
+      this.$store.commit('setBillTable', this.billTable)
       this.$message({
         message: '成功导入账单数据',
         type: 'success',
@@ -199,8 +199,8 @@ export default {
       })
     },
     // 跳转到添加数据页面
-    handleAddData () {
-      this.$router.push('addData')
+    handleAddBill () {
+      this.$router.push('addBill')
     },
     // 跳转到详细统计页面
     handleClickChart () {
@@ -208,19 +208,19 @@ export default {
     },
     // 导出数据
     handleExport () {
-      const data = this.dataTable
+      const bill = this.billTable
       // 将时间转化为unix毫秒格式
-      for (var idx in data) {
-        data[idx].time = moment(data[idx].time).format('x')
+      for (var idx in bill) {
+        bill[idx].time = moment(bill[idx].time).format('x')
       }
-      const fileName = 'export-data'
+      const fileName = 'export-bill'
       const exportType = 'csv'
-      exportFromJSON({ data, fileName, exportType })
+      exportFromJSON({ bill, fileName, exportType })
     }
   },
   // 渲染前，从state获取数据
   beforeMount () {
-    this.dataTable = this.$store.state.dataTable
+    this.billTable = this.$store.state.billTable
     this.catTable = this.$store.state.catTable
     this.chosenMonth = this.$store.state.chosenMonth
   }

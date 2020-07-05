@@ -160,22 +160,22 @@ export default {
   beforeMount () {
     // 将账单数据按照账单分类(category)来归类
     var chartData = []
-    var dataTable = this.$store.state.dataTable
+    var billTable = this.$store.state.billTable
 
-    for (let i = 0; i < dataTable.length; i++) {
+    for (let i = 0; i < billTable.length; i++) {
       var exist = false
       for (let j = 0; j < chartData.length; j++) {
-        if (chartData[j].name === dataTable[i].category) {
-          chartData[j].value += parseFloat(dataTable[i].amount)
+        if (chartData[j].name === billTable[i].category) {
+          chartData[j].value += parseFloat(billTable[i].amount)
           exist = true
           break
         }
       }
       if (!exist) {
         chartData.push({
-          name: dataTable[i].category,
-          value: parseFloat(dataTable[i].amount),
-          type: dataTable[i].type
+          name: billTable[i].category,
+          value: parseFloat(billTable[i].amount),
+          type: billTable[i].type
         })
       }
     }

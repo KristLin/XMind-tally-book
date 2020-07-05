@@ -5,15 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    dataTable: [],
+    billTable: [],
     catTable: [],
     typeDict: { 0: '支出', 1: '收入' },
     catDict: {},
     chosenMonth: ''
   },
   mutations: {
-    setDataTable (state, dataTable) {
-      state.dataTable = dataTable
+    setBillTable (state, billTable) {
+      state.billTable = billTable
     },
     setCatTable (state, catTable) {
       state.catTable = catTable
@@ -24,8 +24,8 @@ export default new Vuex.Store({
     setChosenMonth (state, chosenMonth) {
       state.chosenMonth = chosenMonth
     },
-    addData (state, newData) {
-      state.dataTable.push(newData)
+    addBill (state, newBill) {
+      state.billTable.push(newBill)
     },
     addCat (state, newCat) {
       state.catTable.push(newCat)

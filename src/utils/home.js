@@ -2,7 +2,7 @@
 import moment from 'moment'
 
 // 解析账单CSV
-export function parseDataCSV (itemList) {
+export function parseBillCSV (itemList) {
   var csv = itemList
   for (let i = 0; i < csv.length; i++) {
     // 转为整型
@@ -29,10 +29,10 @@ export function parseCatCSV (itemList) {
 // 提取月份数据
 // 由于自定义组件UploadBtn需要应对更复杂内容的展示，所以返回对象的数组
 // 其中对象必须有个属性name用来存放需要展示的内容，这里month对象存的即月份
-export function getMonths (dataTable) {
+export function getMonths (billTable) {
   var monthList = []
-  for (let i = 0; i < dataTable.length; i++) {
-    var month = dataTable[i].time.slice(0, 7)
+  for (let i = 0; i < billTable.length; i++) {
+    var month = billTable[i].time.slice(0, 7)
     if (!monthList.includes(month)) {
       monthList.push(month)
     }
@@ -55,28 +55,28 @@ export function getCatDict (catTable) {
 
 // 转换账单的显示：账单类型 及 账单分类
 // 显示账单类型为名称
-export function changeTypeDisplay (dataTable, typeDict) {
-  for (let i = 0; i < dataTable.length; i++) {
-    dataTable[i].type = typeDict[dataTable[i].type]
+export function changeTypeDisplay (billTable, typeDict) {
+  for (let i = 0; i < billTable.length; i++) {
+    billTable[i].type = typeDict[billTable[i].type]
   }
-  return dataTable
+  return billTable
 }
 // 显示账单分类为名称
-export function changeCatDisplay (dataTable, catDict) {
+export function changeCatDisplay (billTable, catDict) {
   if (catDict.length === 0) {
-    return dataTable
+    return billTable
   }
-  for (let i = 0; i < dataTable.length; i++) {
-    dataTable[i].category = catDict[dataTable[i].category]
+  for (let i = 0; i < billTable.length; i++) {
+    billTable[i].category = catDict[billTable[i].category]
   }
-  return dataTable
+  return billTable
 }
 
 // 根据所选月份过滤数据集
-export function filterByMonth (dataTable, chosenMonth) {
-  var result = dataTable
+export function filterByMonth (billTable, chosenMonth) {
+  var result = billTable
   if (chosenMonth) {
-    result = dataTable.filter(item => {
+    result = billTable.filter(item => {
       if (item.time.startsWith(chosenMonth)) {
         return item
       }
@@ -86,10 +86,10 @@ export function filterByMonth (dataTable, chosenMonth) {
 }
 
 // 根据关键字过滤数据集
-export function filterByKeyword (dataTable, keyword) {
-  var result = dataTable
+export function filterByKeyword (billTable, keyword) {
+  var result = billTable
   if (keyword) {
-    result = dataTable.filter(item => {
+    result = billTable.filter(item => {
       if (item.time.includes(keyword) || item.type.toString().includes(keyword) || item.category.includes(keyword)) {
         return item
       }
@@ -99,15 +99,15 @@ export function filterByKeyword (dataTable, keyword) {
 }
 
 // 计算总支出和总收入
-export function calSummary (dataTable, chosenMonth) {
+export function calSummary (billTable, chosenMonth) {
   var summary = {
     expense: 0.0,
     income: 0.0
   }
-  if (dataTable.length > 0) {
-    var usedTable = dataTable
+  if (billTable.length > 0) {
+    var usedTable = billTable
     if (chosenMonth) {
-      usedTable = filterByMonth(dataTable, chosenMonth)
+      usedTable = filterByMonth(billTable, chosenMonth)
     }
     for (let i = 0; i < usedTable.length; i++) {
       if (usedTable[i].type === 0) {

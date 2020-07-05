@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import AddData from '../views/AddData.vue'
+import AddBill from '../views/AddBill.vue'
 import AddCat from '../views/AddCat.vue'
 import ShowChart from '../views/ShowChart.vue'
 
@@ -14,9 +14,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/addData',
-    name: 'AddData',
-    component: AddData
+    path: '/addBill',
+    name: 'AddBill',
+    component: AddBill
   },
   {
     path: '/addCat',
