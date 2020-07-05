@@ -31,9 +31,10 @@
 - 下载后进入文件夹，通过`npm install`安装所需依赖
 - 打开浏览器输入`localhost:8080`开始使用
 
-### 云端运行
+### 云端 Demo
 
-- 浏览器输入`https://tally-book.herokuapp.com` (可能需要 VPN)
+- [LiveDemo](https://tally-book.herokuapp.com) (可能需要 VPN)
+- 或浏览器访问 https://tally-book.herokuapp.com
 
 ### 说明
 
@@ -43,11 +44,11 @@
 
 ### 主页面
 
-![image](http://github.com/KristLin/screenshots/screenshot-home.png)
+![image](https://github.com/KristLin/XMind-tally-book/blob/master/screenshots/screenshot-home.png)
 
 ### 详细统计页
 
-![image](http://github.com/KristLin/screenshots/screenshot-chart.png)
+![image](https://github.com/KristLin/XMind-tally-book/blob/master/screenshots/screenshot-chart.png)
 
 # 开发进度
 
