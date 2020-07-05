@@ -14,6 +14,7 @@
 - `XMind-wireframe.pdf`: 线框图
 - `data`: 测试用的数据
 - `dist`: 发布内容及配置, 用于部署在 Heroku
+- `screenshots`: 项目部分截图展示
 
 # 技术栈选择
 
@@ -37,6 +38,16 @@
 ### 说明
 
 - 导入数据格式请参考[XMind 前端面试作业](https://github.com/xmindltd/hiring/blob/master/frontend-1/README.md)
+
+# 部分项目页面展示
+
+### 主页面
+
+![image](http://github.com/KristLin/screenshots/screenshot-home.jpg)
+
+### 详细统计页
+
+![image](http://github.com/KristLin/screenshots/screenshot-chart.jpg)
 
 # 开发进度
 
