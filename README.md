@@ -38,10 +38,10 @@
 - 功能实现
   - 主页
     - [x] 账单数据导入 (:white_check_mark:)
-    - 账单数据导出 (:white_check_mark:)
-    - 账单分类数据导入 (:white_check_mark:)
-    - 账单数据展示（:white_check_mark:）
-    - 账单分类名称切换显示 (:white_check_mark:)
+    - [-] 账单数据导出 (:white_check_mark:)
+    - [] 账单分类数据导入 (:white_check_mark:)
+    - [c] 账单数据展示（:white_check_mark:）
+    - [o] 账单分类名称切换显示 (:white_check_mark:)
     - 账单类型名称切换显示 (:white_check_mark:)
     - 选择月份按钮 (:white_check_mark:)
     - 数据关键字过滤 (:white_check_mark:)
