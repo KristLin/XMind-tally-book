@@ -208,14 +208,15 @@ export default {
     },
     // 导出数据
     handleExport () {
-      const bill = this.billTable
+      // 这里需要用深拷贝，否则会改变原数据
+      var data = JSON.parse(JSON.stringify(this.billTable))
       // 将时间转化为unix毫秒格式
-      for (var idx in bill) {
-        bill[idx].time = moment(bill[idx].time).format('x')
+      for (var idx in data) {
+        data[idx].time = moment(data[idx].time).format('x')
       }
       const fileName = 'export-bill'
       const exportType = 'csv'
-      exportFromJSON({ bill, fileName, exportType })
+      exportFromJSON({ data, fileName, exportType })
     }
   },
   // 渲染前，从state获取数据
