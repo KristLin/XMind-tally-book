@@ -1,22 +1,22 @@
-# 项目说明
+## 项目说明
 
 本项目为[XMind 前端面试作业](https://github.com/xmindltd/hiring/blob/master/frontend-1)
 
-# 开发环境
+## 开发环境
 
 - 系统：MacOS
 - Node: v12.16.1
 - NPM: 6.13.4
 - Vue: 4.4.6
 
-# 目录说明
+## 目录说明
 
 - `XMind-wireframe.pdf`: 线框图
 - `data`: 测试用的数据
 - `dist`: 发布内容及配置, 用于部署在 Heroku
 - `screenshots`: 项目部分截图展示
 
-# 技术栈选择
+## 技术栈选择
 
 - Vue.js
 - Vue-Router
@@ -24,7 +24,7 @@
 - Element
 - Heroku
 
-# 部署运行
+## 部署运行
 
 ### 本地运行
 
@@ -40,7 +40,7 @@
 
 - 导入数据格式请参考[XMind 前端面试作业](https://github.com/xmindltd/hiring/blob/master/frontend-1)
 
-# 部分项目页面展示
+## 部分项目页面展示
 
 ### 主页面
 
@@ -50,7 +50,7 @@
 
 ![image](https://github.com/KristLin/XMind-tally-book/blob/master/screenshots/screenshot-chart.png)
 
-# 开发进度
+## 开发进度
 
 - [x] 线框图：主页，数据添加页，分类添加页，详细统计页
 - 功能实现
@@ -86,7 +86,7 @@
     - [x] 跳转主页
 - [x] 部署到云上
 
-# 遇到的问题
+## 遇到的问题
 
 ### el-upload 组件的排版问题
 
@@ -104,7 +104,7 @@
 
 ### 原设计图中没有设计时间输入(考虑直接选取当前时间)，后续发现这个设计不合理，需要加上时间输入
 
-# 开发日志
+## 开发日志
 
 ### 2020-06-30
 
@@ -157,9 +157,13 @@
 - 添加 Header 和 Footer
 - 开发使用说明页面
 
-# 项目展望
+## 项目展望
 
 - 虽然项目中已通过对页面跳转按钮进行合理禁用避免了非法访问， 但用户可以通过地址栏直接访问任意页面，需要路由守卫等方法处理非法的页面访问（如未导入数据就进入详细统计页面）
 - 将数据存储到本地，避免用户刷新数据丢失的情况
 - 让详细统计中的图标随屏幕尺寸自动调整
 - 使用 Element-UI 的 vlidators 对输入进行系统校验、提示
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)

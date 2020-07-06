@@ -5,7 +5,7 @@
         [访问项目GitHub地址]
       </a>
     </small>
-    <footer>© Krist 2020.</footer>
+    <footer>© Copyright Krist 2020.</footer>
   </div>
 </template>
 
