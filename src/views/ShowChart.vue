@@ -37,40 +37,33 @@
 </template>
 
 <script>
-import echarts from 'echarts'
+// import echarts from 'echarts'
+import {
+  getLegends,
+  getPerDict,
+  getCatGroups,
+  drawPieChart
+} from '@/utils/showChart.js'
 
 export default {
   name: 'ShowChart',
   data () {
     return {
-      // 用于展示的数据
-      chartData: [],
       // 完整数据
+      chartData: [],
+      // 用于展示的数据
       showData: [],
       echartFig: Object
     }
   },
   computed: {
-    // 从所选取的数据中获取需要展示的图例
+    // 需要展示的图例名称
     legends () {
-      var result = []
-      for (let i = 0; i < this.showData.length; i++) {
-        result.push(this.showData[i].name)
-      }
-      return result
+      return getLegends(this.chartData)
     },
+    // 各分类的金额占比
     perDict () {
-      // 计算所选取数据的金额总额
-      var sum = 0.0
-      for (let i = 0; i < this.showData.length; i++) {
-        sum += this.showData[i].value
-      }
-      // 将分类和其所对应的占比存入到字典中
-      var result = {}
-      for (let i = 0; i < this.showData.length; i++) {
-        result[this.showData[i].name] = (100 * this.showData[i].value) / sum
-      }
-      return result
+      return getPerDict(this.chartData)
     }
   },
   methods: {
@@ -115,80 +108,24 @@ export default {
       this.echartFig.resize()
     },
     drawLine () {
-      const _this = this
-      // 基于准备好的dom，初始化echarts实例
-      this.echartFig = echarts.init(
-        document.getElementById('chart-div'),
-        'light'
+      this.echartFig = drawPieChart(
+        'chart-div',
+        this.showData,
+        this.legends,
+        this.perDict
       )
-      // 绘制图表
-      this.echartFig.setOption({
-        tooltip: {
-          trigger: 'item'
-        },
-        // 展示图例
-        legend: {
-          x: 'right',
-          y: 'top',
-          orient: 'vertical',
-          data: _this.legends,
-          formatter: function (name) {
-            return name + ': ' + _this.perDict[name].toFixed(2) + '%'
-          }
-        },
-        // 图表参数
-        series: [
-          {
-            type: 'pie',
-            center: ['50%', '55%'],
-            radius: ['20px%', '100px'],
-            clockwise: true,
-            avoidLabelOverlap: true,
-            // 是否展示标签
-            label: {
-              show: false,
-              position: 'outside',
-              formatter: '{b}：{d}%\n'
-            },
-            // 需要展示的数据
-            data: this.showData
-          }
-        ]
-      })
     }
   },
   beforeMount () {
-    // 将账单数据按照账单分类(category)来归类
-    var chartData = []
-    var billTable = this.$store.state.billTable
-
-    for (let i = 0; i < billTable.length; i++) {
-      var exist = false
-      for (let j = 0; j < chartData.length; j++) {
-        if (chartData[j].name === billTable[i].category) {
-          chartData[j].value += parseFloat(billTable[i].amount)
-          exist = true
-          break
-        }
-      }
-      if (!exist) {
-        chartData.push({
-          name: billTable[i].category,
-          value: parseFloat(billTable[i].amount),
-          type: billTable[i].type
-        })
-      }
-    }
-    for (let i = 0; i < chartData.length; i++) {
-      chartData[i].name = this.$store.state.catDict[chartData[i].name]
-    }
-    chartData.sort((a, b) => {
-      return b.value - a.value
-    })
+    // 将账单数据按照账单分类归类
+    var catGroups = getCatGroups(
+      this.$store.state.billTable,
+      this.$store.state.catDict
+    )
 
     // 将归类好的数据存储到this.data中
-    this.chartData = chartData
-    this.showData = chartData
+    this.chartData = catGroups
+    this.showData = catGroups
   },
   mounted () {
     // 渲染时生成echart

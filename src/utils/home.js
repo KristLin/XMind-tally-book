@@ -1,3 +1,4 @@
+import exportFromJSON from 'export-from-json'
 // 所要求的时间格式使用Date处理较为繁琐，这里直接引入moment
 import moment from 'moment'
 
@@ -123,4 +124,16 @@ export function calSummary (billTable, chosenMonth) {
   } else {
     return summary
   }
+}
+
+export function exportData (billTable) {
+  // 这里需要用深拷贝，否则会改变原数据
+  var data = JSON.parse(JSON.stringify(billTable))
+  // 将时间转化为unix毫秒格式
+  for (var idx in data) {
+    data[idx].time = moment(data[idx].time).format('x')
+  }
+  const fileName = 'export-bill'
+  const exportType = 'csv'
+  exportFromJSON({ data, fileName, exportType })
 }

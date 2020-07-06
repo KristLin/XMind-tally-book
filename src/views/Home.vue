@@ -104,8 +104,6 @@
 import UploadBtn from '@/components/UploadBtn.vue'
 import DropdownBtn from '@/components/DropdownBtn.vue'
 import BillTable from '@/components/BillTable.vue'
-import exportFromJSON from 'export-from-json'
-import moment from 'moment'
 
 import {
   parseBillCSV,
@@ -116,7 +114,8 @@ import {
   filterByMonth,
   filterByKeyword,
   getCatDict,
-  calSummary
+  calSummary,
+  exportData
 } from '@/utils/home'
 
 export default {
@@ -208,15 +207,7 @@ export default {
     },
     // 导出数据
     handleExport () {
-      // 这里需要用深拷贝，否则会改变原数据
-      var data = JSON.parse(JSON.stringify(this.billTable))
-      // 将时间转化为unix毫秒格式
-      for (var idx in data) {
-        data[idx].time = moment(data[idx].time).format('x')
-      }
-      const fileName = 'export-bill'
-      const exportType = 'csv'
-      exportFromJSON({ data, fileName, exportType })
+      exportData(this.billTable)
     }
   },
   // 渲染前，从state获取数据
