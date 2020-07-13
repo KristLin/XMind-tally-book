@@ -163,7 +163,3 @@
 - 将数据存储到本地，避免用户刷新数据丢失的情况
 - 让详细统计中的图标随屏幕尺寸自动调整
 - 使用 Element-UI 的 vlidators 对输入进行系统校验、提示
-
-## License
-
-[MIT](http://opensource.org/licenses/MIT)
